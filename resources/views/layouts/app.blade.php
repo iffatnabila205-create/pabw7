@@ -43,6 +43,20 @@
             font-weight: 600;
         }
 
+        /* Tombol logout di navbar */
+        .logout-form { display: inline; margin: 0; }
+        .navbar nav .btn-logout {
+            display: inline-block;
+            width: auto;
+            margin: 0 0 0 20px;
+            padding: 6px 10px;
+            background: transparent;
+            color: #cfe0f7;
+            font-size: 14px;
+            border-radius: 6px;
+        }
+        .navbar nav .btn-logout:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
         /* Container */
         .container {
             max-width: 700px;
@@ -174,7 +188,20 @@
         <div class="brand">Laporan Banjir</div>
         <nav>
             <a href="{{ route('laporbanjir.form') }}" class="{{ request()->routeIs('laporbanjir.form') ? 'active' : '' }}">Form Pelaporan</a>
-            <a href="{{ route('laporbanjir.daftar') }}" class="{{ request()->routeIs('laporbanjir.daftar') ? 'active' : '' }}">Daftar Laporan</a>
+
+            @auth
+                <a href="{{ route('laporbanjir.daftar') }}" class="{{ request()->routeIs('laporbanjir.daftar') ? 'active' : '' }}">Daftar Laporan</a>
+                <a href="{{ route('profil') }}" class="{{ request()->routeIs('profil') ? 'active' : '' }}">Profil Petugas</a>
+                <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                    @csrf
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            @endauth
+
+            @guest
+                <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">Login</a>
+                <a href="{{ route('register') }}" class="{{ request()->routeIs('register') ? 'active' : '' }}">Register</a>
+            @endguest
         </nav>
     </header>
 

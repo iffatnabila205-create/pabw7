@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LaporBanjirController extends Controller
 {
@@ -31,5 +32,9 @@ class LaporBanjirController extends Controller
         return view('laporbanjir.daftar', [
             'laporans' => Laporan::all(),   // ambil dari database
         ]);
+    }
+    public function profil()
+    {
+        return view('profil', ['user' => Auth::user()]);
     }
 }
