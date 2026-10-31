@@ -19,10 +19,13 @@ class LaporanSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
             Laporan::create([
-                'nama_pelapor'     => $faker->name(),
-                'lokasi'           => 'Kec. ' . $faker->randomElement($kecamatan),
-                'tinggi_genangan'  => $faker->numberBetween(10, 150),
-                'tanggal_kejadian' => $faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
+                'nama_pelapor' => $faker->name(),
+                'no_hp'        => $faker->numerify('08##########'),
+                'lokasi'       => $faker->streetName(),
+                'kecamatan'    => $faker->randomElement($kecamatan),
+                'tinggi_air'   => $faker->numberBetween(10, 150),
+                'keterangan'   => $faker->sentence(),
+                'status'       => $faker->randomElement(['Menunggu', 'Diproses', 'Selesai']),
             ]);
         }
     }
